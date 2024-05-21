@@ -9,6 +9,7 @@ function ViewCourse() {
   const [courseName, setCourseName] = useState(name || '');
   const [currentSection, setCurrentSection] = useState('Learning-activity');
   const [learningActivities, setLearningActivities] = useState([]);
+  const [fileUrl, setFileUrl] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +21,33 @@ function ViewCourse() {
       navigate('/login');
     }
   }, [navigate]);
+  useEffect(() => {
+    const getCourseFile = async () => {
+      try {
+     
+     
+        const response = await fetch(`http://localhost:3000/get_course_file/${courseName}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+        const data = await response.json();
 
+     
+        const { url } = data;
+        console.log("url", data)
+        setFileUrl(url);
+      } catch (error) {
+        console.error('Error fetching course file:', error);
+   
+      }
+    };
+
+    getCourseFile();
+
+    return () => {
+  
+    };
+  }, []);
   useEffect(() => {
     const fetchCourseInfo = async () => {
       try {
@@ -144,7 +171,18 @@ function ViewCourse() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: '4rem' }}>
         <Container>
           {currentSection === 'course-info' && <Paper sx={{ p: 2, mb: 2 }}>Head over to the course info page to get started.</Paper>}
-          {currentSection === 'syllabus' && <Paper sx={{ p: 2, mb: 2 }}>Syllabus content...</Paper>}
+
+          {currentSection === 'syllabus' && (
+            <Box sx={{ mb: 2 }}>
+             
+                <Paper  sx={{ p: 2, mb: 2, cursor: 'pointer' }} >
+             
+                <Typography variant="h6" sx={{ marginBottom: '1rem' }}>Syllabus</Typography>
+                {fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Syllabus File</a>}
+                </Paper>
+              
+            </Box>
+          )}
           {currentSection === 'contact' && <Paper sx={{ p: 2, mb: 2 }}>Contact information...</Paper>}
           {currentSection === 'announcements' && <Paper sx={{ p: 2, mb: 2 }}>Announcements...</Paper>}
           {currentSection === 'Learning-activity' && (

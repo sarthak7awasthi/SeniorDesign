@@ -224,7 +224,7 @@ function ViewCourse() {
     <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>
         <Typography variant="h6" sx={{ marginBottom: '1rem' }}>Syllabus</Typography>
         {/* Replace the below anchor tag with your file link */}
-        {fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Resource File</a>}
+        {fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Syllabus File</a>}
     </Box>
 )}
 
