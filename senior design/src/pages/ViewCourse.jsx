@@ -124,10 +124,30 @@ function ViewCourse() {
                 throw new Error('Failed to create learning activity');
             }
             setCreateModalOpen(false);
-            setmessage(false);
+            setmessage(!message);
+            console.log(message, "message");
 
         } catch (error) {
             console.error('Error creating learning activity:', error);
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/get_student_activities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ courseName: state.Name })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch learning activities');
+            }
+
+            const activitiesData = await response.json();
+            setLearningActivities(activitiesData);
+        } catch (error) {
+            console.error('Error fetching learning activities:', error);
         }
     };
 
