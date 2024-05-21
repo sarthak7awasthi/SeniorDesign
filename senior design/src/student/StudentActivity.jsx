@@ -160,9 +160,9 @@ function StudentActivity() {
                         Student Activity
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleBack}>Back</Button>
-              <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleHome}>Home</Button>
-              <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
+                    <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleBack}>Back</Button>
+                    <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleHome}>Home</Button>
+                    <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
                 </Toolbar>
             </AppBar>
             <Box component="main" sx={{ flexGrow: 1, p: 3, mt: '4rem' }}>
@@ -172,26 +172,28 @@ function StudentActivity() {
                             <CardContent>
                                 <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>{activity.title}</Typography>
                                 <Typography variant="h6" sx={{ mb: 2, fontFamily: 'Roboto, sans-serif', fontWeight: 550 }}>
-                                    {activity.instructions}</Typography>
+                                    {activity.instructions}
+                                </Typography>
                                 {/* <Typography variant="body1" sx={{ mb: 2 }}>Ideal Answer: {activity.idealAnswer}</Typography> */}
-                                <Box>
-                                    <Typography variant="h6" sx={{ mb: 2 }}>Materials</Typography>
-                                    <List>
-                                        {activity.materials.map((material, index) => (
-                                            <ListItem key={index}>
-                                                <ListItemText primary={<a href={material}>{material}</a>} />
-                                            </ListItem>
-                                        ))}
-                                    </List>
-                                </Box>
+                                {activity.materials.length > 0 && ( // Conditionally render "Materials" text
+                                    <Box>
+                                        <Typography variant="h6" sx={{ mb: 2 }}>Materials</Typography>
+                                        <List>
+                                            {activity.materials.map((material, index) => (
+                                                <ListItem key={index}>
+                                                    <ListItemText primary={<a href={material}>{material}</a>} />
+                                                </ListItem>
+                                            ))}
+                                        </List>
+                                    </Box>
+                                )}
                             </CardContent>
                         </Card>
                     )}
                     <Box sx={{ mb: 3 }}>
-                        <Typography variant="h5">Chat Area</Typography>
                         <Paper sx={{ p: 2, mb: 2, maxHeight: '400px', minHeight: '100px', overflow: 'auto', borderRadius: 2, boxShadow: 3 }}>
                             {messages.map((msg, index) => (
-                                <Box key={index} sx={{ textAlign: msg.type === 'student' ? 'right' : 'left', mb: 1 }}>
+                                <Box key={index} sx={{ textAlign: msg.type === 'student' ? 'right' : 'left', mb: 2 }}>
                                     <Typography variant="body2" component="p" sx={{ display: 'inline-block', bgcolor: msg.type === 'student' ? '#e0f7fa' : '#f1f8e9', p: 1, borderRadius: 1 }}>
                                         {msg.text}
                                     </Typography>
@@ -221,6 +223,7 @@ function StudentActivity() {
                                             borderColor: '#007BFF', // Change border color when focused
                                         },
                                     },
+                                    fontSize: '18px',
                                 }}
                             />
 

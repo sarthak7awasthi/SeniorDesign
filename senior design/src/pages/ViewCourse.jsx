@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Drawer, List, ListItem, ListItemText, Box, Container, Modal, TextField, MenuItem } from '@mui/material';
 import CreateActivityModal from './CreateActivityModal';
+import { Card, CardContent, CardActionArea } from '@mui/material';
 
 function ViewCourse() {
     const navigate = useNavigate();
@@ -29,31 +30,31 @@ function ViewCourse() {
 
     useEffect(() => {
         const getCourseFile = async () => {
-          try {
-         
-         
-            const response = await fetch(`http://localhost:3000/get_course_file/${courseName}`);
-            if (!response.ok) {
-              throw new Error('Failed to fetch');
+            try {
+
+
+                const response = await fetch(`http://localhost:3000/get_course_file/${courseName}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch');
+                }
+                const data = await response.json();
+
+
+                const { url } = data;
+                console.log("url", data)
+                setFileUrl(url);
+            } catch (error) {
+                console.error('Error fetching course file:', error);
+
             }
-            const data = await response.json();
-    
-         
-            const { url } = data;
-            console.log("url", data)
-            setFileUrl(url);
-          } catch (error) {
-            console.error('Error fetching course file:', error);
-       
-          }
         };
-    
+
         getCourseFile();
-    
+
         return () => {
-      
+
         };
-      }, []);
+    }, []);
 
     useEffect(() => {
         const fetchCourseInfo = async () => {
@@ -210,8 +211,8 @@ function ViewCourse() {
                         {courseName}
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleHome}>Home</Button>
-                    <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleLogout}>Logout</Button>
+                    <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleHome}>HOME</Button>
+                    <Button color="inherit" sx={{ maxWidth: 100, px: 2,transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -219,7 +220,7 @@ function ViewCourse() {
                 sx={{
                     width: 240,
                     flexShrink: 0,
-                    [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#5A9BD5', color: 'white' },
+                    [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#18192d', color: 'white' },
                 }}
             >
                 <Toolbar />
@@ -241,12 +242,12 @@ function ViewCourse() {
                 <Container sx={{ mt: 4 }}>
                     {currentSection === 'course-info' && <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>Head over to the course info page to get started.</Box>}
                     {currentSection === 'syllabus' && (
-    <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>
-        <Typography variant="h6" sx={{ marginBottom: '1rem' }}>Syllabus</Typography>
-        {/* Replace the below anchor tag with your file link */}
-        {fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Syllabus File</a>}
-    </Box>
-)}
+                        <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>
+                            <Typography variant="h6" sx={{ marginBottom: '1rem' }}>Syllabus</Typography>
+                            {/* Replace the below anchor tag with your file link */}
+                            {fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Syllabus File</a>}
+                        </Box>
+                    )}
 
                     {currentSection === 'contact-information' && <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>Contact information...</Box>}
                     {currentSection === 'announcements' && <Box sx={{ backgroundColor: '#f9f9f9', padding: '1rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '1rem' }}>Announcements...</Box>}
@@ -261,25 +262,18 @@ function ViewCourse() {
                                 </Typography>
                             ) : (
                                 learningActivities.map(activity => (
-                                    <Box
-                                        key={activity._id}
-                                        sx={{
-                                            mb: 2,
-                                            p: 2,
-                                            border: '1px solid #ccc',
-                                            borderRadius: '4px',
-                                            cursor: 'pointer',
-                                            transition: 'background-color 0.3s, transform 0.3s',
-                                            '&:hover': {
-                                                backgroundColor: '#e0e0e0',
-                                                transform: 'translateY(-2px)',
-                                            }
-                                        }}
-                                        onClick={() => handleActivityClick(activity)}
-                                    >
-                                        <Typography variant="h6">{activity.title}</Typography>
-                                        <Typography>Status: {activity.status ? 'Open' : 'Locked'}</Typography>
-                                    </Box>
+                                    <Card key={activity._id} sx={{ mb: 2, cursor: 'pointer', transition: 'transform 0.3s', '&:hover': { transform: 'scale(0.985)', backgroundColor: '#E4F6F8' } }} onClick={() => handleActivityClick(activity)}>
+                                        <CardActionArea>
+                                            <CardContent>
+                                                <Typography variant="h6" component="div">
+                                                    {activity.title}
+                                                </Typography>
+                                                <Typography variant="body2" color="textSecondary">
+                                                    Status: {activity.status ? 'Open' : 'Locked'}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
                                 ))
                             )}
                         </Box>

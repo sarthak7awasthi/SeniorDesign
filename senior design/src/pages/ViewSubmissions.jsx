@@ -88,9 +88,9 @@ const ViewSubmissions = () => {
             {courseName}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleBackToLearningActivity}>Back</Button>
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' }}} onClick={handleHome}>Home</Button>
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10, '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleBackToLearningActivity}>Back</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' }}} onClick={handleHome}>Home</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: '4rem' }}>
