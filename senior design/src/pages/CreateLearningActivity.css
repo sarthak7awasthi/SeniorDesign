@@ -1,0 +1,65 @@
+/* styles.css */
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 20%;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.sidebar h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu button {
+  display: block;
+  margin: 5px 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.content {
+  width: 80%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-activity,
+.study-material {
+  width: 45%;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #888;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+}
