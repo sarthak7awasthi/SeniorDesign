@@ -135,8 +135,8 @@ function ViewCourse() {
             {courseName}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleHome}>Home</Button>
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleLogout}>Logout</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleHome}>Home</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -144,7 +144,7 @@ function ViewCourse() {
         sx={{
           width: 240,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#5A9BD5', color: 'white' },
+          [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#18192d', color: 'white' },
         }}
       >
         <Toolbar />
@@ -188,7 +188,7 @@ function ViewCourse() {
           {currentSection === 'Learning-activity' && (
             <Box sx={{ mb: 2 }}>
               {learningActivities.map(activity => (
-                <Paper key={activity._id} sx={{ p: 2, mb: 2, cursor: 'pointer' }} onClick={() => handleActivityClick(activity.title)}>
+                <Paper key={activity._id} sx={{ p: 2, mb: 2, cursor: 'pointer', transition: 'transform 0.3s', '&:hover': { transform: 'scale(0.98)', backgroundColor: '#E4F6F8' }  }} onClick={() => handleActivityClick(activity.title)}>
                   <Typography variant="h6">{activity.title}</Typography>
                   <Typography>Status: {activity.status ? 'Open' : 'Locked'}</Typography>
                 </Paper>

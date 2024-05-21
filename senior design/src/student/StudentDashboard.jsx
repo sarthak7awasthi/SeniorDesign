@@ -78,14 +78,14 @@ function StudentDashboard() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           {/* <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleHome}>Home</Button> */}
-          <Button color="inherit" sx={{ maxWidth: 100, px: 10 }} onClick={handleLogout}>Logout</Button>
+          <Button color="inherit" sx={{ maxWidth: 100, px: 2, transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.03)', backgroundColor: '#042a58' } }} onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: '4rem', backgroundColor: '#f0f0f0' }}>
         <Container>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
             {courses.map((course) => (
-              <Card key={course._id} sx={{ width: '300px', cursor: 'pointer' }} onClick={() => openCourse(course.courseName)}>
+              <Card key={course._id} sx={{ width: '300px', cursor: 'pointer', transition: 'transform 0.3s',  '&:hover': { transform: 'scale(0.985)', backgroundColor: '#E4F6F8' } }} onClick={() => openCourse(course.courseName)}>
                 <CardContent>
                   <Typography variant="h6" component="div">
                     {course.courseName}
