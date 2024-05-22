@@ -194,7 +194,7 @@ function StudentActivity() {
                         <Paper sx={{ p: 2, mb: 2, maxHeight: '400px', minHeight: '100px', overflow: 'auto', borderRadius: 2, boxShadow: 3 }}>
                             {messages.map((msg, index) => (
                                 <Box key={index} sx={{ textAlign: msg.type === 'student' ? 'right' : 'left', mb: 2 }}>
-                                    <Typography variant="body2" component="p" sx={{ display: 'inline-block', bgcolor: msg.type === 'student' ? '#e0f7fa' : '#f1f8e9', p: 1, borderRadius: 1 }}>
+                                    <Typography variant="body2" component="p" sx={{ display: 'inline-block', fontSize: '1.01rem', bgcolor: msg.type === 'student' ? '#e0f7fa' : '#f1f8e9', p: 1, borderRadius: 1 }}>
                                         {msg.text}
                                     </Typography>
                                 </Box>
