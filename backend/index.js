@@ -92,7 +92,74 @@ app.post('/add_course',  upload.single('resources'), async (req, res) => {
   }
 });
 
+app.post('/add_activity', upload.single('materials'), async (req, res) => {
+  try {
 
+      console.log("body", req.body);
+      const { courseName, title, instructions, idealAnswer } = req.body;
+      const materials = req.file;
+      console.log("file", materials);
+      const status = true;
+      console.log("req.body", req.body)
+      if (!materials) {
+        console.log("goes here");
+        return res.status(400).send('File not uploaded');
+      }
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const userId = decodedToken.userId;
+    
+    const user = userId;
+    const s3Key = `${userId}/${Date.now()}_${materials.originalname}`
+
+    const params = {
+      Bucket: "learnai",
+      Key: s3Key,
+      Body: materials.buffer,
+    };
+    s3.putObject(params, async (err, data) => {
+      if (err) {
+        console.log("Error uploading to S3:", err);
+        return res.status(500).send('Failed to upload file');
+      }
+
+      console.log("File uploaded to S3:", data);
+
+    
+    const userInfo = await UserModel.findById(userId);
+    const instructorId = userInfo.email;
+    const materials= [s3Key]
+
+    if (!user ||  !title || !instructorId || !instructions || !courseName || !idealAnswer || status === undefined) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+
+  const newActivity = new Activity({
+      user,
+      title,
+      courseName,
+      instructorId,
+      materials,
+      instructions,
+      idealAnswer,
+      status
+  });
+
+
+  await newActivity.save();
+
+
+
+  res.status(201).json({ message: 'Learning activity created successfully' });
+  });
+    
+    
+} catch (error) {
+  console.error('Error creating learning activity:', error);
+  res.status(500).json({ error: 'Internal server error' });
+}
+});
 
 
 
@@ -265,47 +332,7 @@ app.get('/get_activities', async (req, res) => {
   });
 
 
-  app.post('/add_activity',  async (req, res) => {
-    try {
-        const { courseName, title, materials, instructions, idealAnswer } = req.body;
-        const status = true;
-        console.log("req.body", req.body)
-
-      const token = req.headers.authorization.split(' ')[1];
-      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-      const userId = decodedToken.userId;
-      const user = userId;
-
-      const userInfo = await UserModel.findById(userId);
-      const instructorId = userInfo.email;
-
-      if (!user ||  !title || !instructorId || !instructions || !courseName || !idealAnswer || status === undefined) {
-        return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-
-    const newActivity = new Activity({
-        user,
-        title,
-        courseName,
-        instructorId,
-        materials,
-        instructions,
-        idealAnswer,
-        status
-    });
-
- 
-    await newActivity.save();
-
   
-  
-    res.status(201).json({ message: 'Learning activity created successfully' });
-} catch (error) {
-    console.error('Error creating learning activity:', error);
-    res.status(500).json({ error: 'Internal server error' });
-}
-});
 
 
 
@@ -435,8 +462,18 @@ app.post('/get_individual_activity', async (req, res) => {
       return res.status(404).json({ error: 'Activity not found' });
     }
 
+
+    console.log("materials", activity);
+    const params = {
+      Bucket: "learnai", 
+      Key: activity.materials[0],   
+      Expires: 60 
+    };
+
+    const url = s3.getSignedUrl('getObject', params);
  
-    res.json(activity);
+    res.json({ activity, url });
+
   } catch (error) {
     console.error('Error fetching activity:', error);
     res.status(500).json({ error: 'Internal Server Error' });

@@ -9,6 +9,7 @@ function StudentActivity() {
     const [title, setTitle] = useState(state?.Title);
     const [activity, setActivity] = useState(null);
     const [studentAnswer, setStudentAnswer] = useState('');
+    const [fileUrl, setFileUrl] = useState('');
     const [messages, setMessages] = useState([]);
     const [lastAnswer, setLastAnswer] = useState('');
     const navigate = useNavigate();
@@ -37,7 +38,11 @@ function StudentActivity() {
                     throw new Error('Failed to fetch activity');
                 }
                 const data = await response.json();
-                setActivity(data);
+                setActivity(data.activity);
+                setFileUrl(data.url);
+
+
+                console.log(data)
             } catch (error) {
                 console.error('Error fetching activity:', error);
             }
@@ -177,11 +182,11 @@ function StudentActivity() {
                                 {/* <Typography variant="body1" sx={{ mb: 2 }}>Ideal Answer: {activity.idealAnswer}</Typography> */}
                                 {activity.materials.length > 0 && ( // Conditionally render "Materials" text
                                     <Box>
-                                        <Typography variant="h6" sx={{ mb: 2 }}>Materials</Typography>
+                                        <Typography variant="h6" sx={{ mb: 2 }}>Materials:</Typography>
                                         <List>
                                             {activity.materials.map((material, index) => (
                                                 <ListItem key={index}>
-                                                    <ListItemText primary={<a href={material}>{material}</a>} />
+                                                    <ListItemText primary={fileUrl && <a href={fileUrl} target="_blank" rel="noopener noreferrer">Resource File Provided by Instructor for the activity.</a>} />
                                                 </ListItem>
                                             ))}
                                         </List>

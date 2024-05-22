@@ -109,16 +109,20 @@ function ViewCourse() {
 
     const handleCreateActivity = async (formData) => {
         try {
-            const holder = { courseName: state.Name, title: formData.title, materials: [], instructions: formData.instructions, idealAnswer: formData.idealAnswer };
+            const holder = new FormData();
+            holder.append('courseName', state.Name);
+            holder.append('title', formData.title);
+            holder.append('materials', formData.materials[0]);
+            holder.append('instructions', formData.instructions)
+            holder.append('idealAnswer', formData.idealAnswer)
             console.log("Holder", holder);
             const token = localStorage.getItem('token');
             const response = await fetch('http://localhost:3000/add_activity', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(holder)
+                body: holder
             });
 
             if (!response.ok) {

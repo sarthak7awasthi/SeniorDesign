@@ -31,7 +31,7 @@ function CreateActivityModal({ isOpen, onClose, onCreate }) {
     onCreate(formData);
     setFormData({
       title: '',
-      materials: [],
+      materials: '',
       instructions: '',
       idealAnswer: ''
     });
