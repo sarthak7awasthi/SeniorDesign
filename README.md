@@ -37,3 +37,53 @@ This process provides personalized feedback, helping students learn and easing t
 
 ### User-Friendly Frontend
 - **React and MUI**: The platform's frontend is built with React and styled using the MUI component library, offering a consistent and engaging user experience.
+
+## Installation
+
+To set up the project locally, follow these steps:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sarthak7awasthi/SeniorDesign.git 
+cd SeniorDesign
+```
+
+### 2. Install Dependencies
+
+#### Backend
+Navigate to the **backend** folder and install the necessary dependencies:
+```bash
+cd backend
+npm install
+```
+
+#### Frontend
+Navigate to the **senior design** folder and install the necessary dependencies:
+```bash
+cd ../senior design
+npm install
+```
+
+## Usage
+
+### Start the servers
+
+In the **backend** folder, start the server
+```bash
+cd backend
+node index.js
+```
+This server communicates between the MongoDB Cluster and the Front-end
+
+Navigate to the **senior design** folder, to start the frontend application:
+```bash
+cd ../senior design
+npm run dev
+```
+### Access the application
+Open your browser and navigate to the appropriate URL (e.g., http://localhost:5173) to access the application.
+
+
+## Acknowledgments
+Thanks to our advisor, [Dr. Filippos Vokolos](https://drexel.edu/cci/about/directory/V/Vokolos-Filippos/), for his guidance and support throughout the project.
