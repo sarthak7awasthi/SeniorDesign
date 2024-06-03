@@ -67,6 +67,18 @@ npm install
 
 ## Usage
 
+### Configuring Environment Variables
+Create a *.env* file in the **backend** folder with the following variables:
+
+```bash
+MONGODB_URI=mongodb+srv://<your_mongodb_connection_string>
+JWT_SECRET=<your_jwt_secret>
+ENDPOINT=<your_s3_bucket_endpoint>
+ACCESS_KEY=<your_s3_access_key>
+SECRET_KEY=<your_s3_secret_key>
+PORT=<backend_port>  # Optional: specify if different from default
+```
+
 ### Start the servers
 
 In the **backend** folder, start the server
@@ -84,6 +96,11 @@ npm run dev
 ### Access the application
 Open your browser and navigate to the appropriate URL (e.g., http://localhost:5173) to access the application.
 
-
 ## Acknowledgments
-Thanks to our advisor, [Dr. Filippos Vokolos](https://drexel.edu/cci/about/directory/V/Vokolos-Filippos/), for his guidance and support throughout the project.
+Thanks to our advisor, [Dr. Filippos Vokolos](https://drexel.edu/cci/about/directory/V/Vokolos-Filippos/), for his guidance and support throughout the project. We also extend our gratitude to Drexel University and the College of Computing & Informatics for providing the resources and environment necessary for this project.
+
+## Contributors
+- **[Hasan Shameer Muhammed](https://www.linkedin.com/in/hasansm/)**: Full-stack developer, focused on the implementation of core backend features, application styling, and end-to-end testing.
+- **[Sarthak Awasthi](https://www.linkedin.com/in/sarthak-awasthi-6107991a7/)**: Full-stack developer, focused on the implementation of core backend features, database integration, and integration testing.
+
+
