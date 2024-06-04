@@ -369,13 +369,13 @@ app.post('/enroll_student', async (req, res) => {
       port: 587,
       secure: false, // For TLS
       auth: {
-          user: 'learnai.senior.design@outlook.com',
+          user: 'senior.design799@outlook.com',
           pass: 'PassWord76^'
       }
   });
   
   const mailOptions = {
-      from: 'learnai.senior.design@outlook.com',
+      from: 'senior.design799@outlook.com',
       to: email,
       subject: 'Welcome to Your LearnAI App!',
       text: `Dear ${fullName},\n\nWelcome to Your Education App!\n\nYour account has been successfully created.\n\nEmail: ${email}\nPassword: ${password}\n\nPlease login using these credentials.\n\nBest regards,\nYour Education App Team`

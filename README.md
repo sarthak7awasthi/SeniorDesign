@@ -76,7 +76,7 @@ JWT_SECRET=<your_jwt_secret>
 ENDPOINT=<your_s3_bucket_endpoint>
 ACCESS_KEY=<your_s3_access_key>
 SECRET_KEY=<your_s3_secret_key>
-PORT=<backend_port>  # Optional: specify if different from default
+PORT=<backend_port>  
 ```
 
 ### Start the servers

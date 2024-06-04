@@ -74,7 +74,7 @@ describe('<Dashboard />', () => {
     cy.contains('Create Course').click();
     cy.get('input[name="courseName"]').type('New Course');
     cy.get('textarea[name="description"]').type('New Course Description');
-    cy.get('input[type="file"]').selectFile('path/to/resource.pdf'); // Replace with the path to a real file
+    cy.get('input[type="file"]').selectFile('path/to/resource.pdf'); 
     cy.contains('Create').click();
     cy.wait('@createCourse');
     cy.get('form').should('not.exist');
