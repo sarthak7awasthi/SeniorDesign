@@ -96,6 +96,14 @@ npm run dev
 ### Access the application
 Open your browser and navigate to the appropriate URL (e.g., http://localhost:5173) to access the application.
 
+### Testing
+
+In the **backend** folder, run the commands
+```bash
+cd backend
+npm run test
+```
+
 ## Acknowledgments
 Thanks to our advisor, [Dr. Filippos Vokolos](https://drexel.edu/cci/about/directory/V/Vokolos-Filippos/), for his guidance and support throughout the project. We also extend our gratitude to Drexel University and the College of Computing & Informatics for providing the resources and environment necessary for this project.
 
